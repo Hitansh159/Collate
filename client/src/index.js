@@ -6,12 +6,12 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
 import "./index.css";
-import Home from './components/home/home' 
+import Home from "./components/home/home";
 
 // const store = createStore(reducers, compose(applyMiddleware(thunk)));
 ReactDOM.render(
   // <Provider store={store}>
-    <Home />,
+  <App />,
   // </Provider>,
   document.getElementById("root")
 );
