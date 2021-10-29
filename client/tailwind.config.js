@@ -2,10 +2,17 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      width:{
+        '30p' : '30%',
+        '60p' : '60%',
+        '90p' : '90%'
+      }, 
+    },
   },
   variants: {
-    extend: {},
+    extend: { 
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),
@@ -15,7 +22,7 @@ module.exports = {
     styled: true,
     themes: [
       'garden',
-      'forest'
+      'dracula'
     ],
     base: true,
     utils: true,
