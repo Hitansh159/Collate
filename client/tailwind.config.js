@@ -7,5 +7,19 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('daisyui'),
+  ],
+  daisyui: {
+    styled: true,
+    themes: [
+      'garden',
+      'forest'
+    ],
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
+  }
 }
