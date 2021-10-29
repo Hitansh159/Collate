@@ -1,21 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ErrorPage from "./components/errorPage/errorPage";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import Dashboard from "./components/dashboard/dashboard";
+import Editor from "./components/editor/editor";
+import Preview from "./components/preview/preview";
+import Home from "./components/home/home";
 
 function App() {
   return (
-    <div class="card shadow-xl image-full h-1/2 w-1/3">
-      <figure>
-        <img src="https://picsum.photos/id/1005/400/250" className="h-3 w-2" />
-      </figure>
-      <div class="justify-end card-body">
-        <h2 class="card-title">Image overlay</h2>
-        <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p>
-        <div class="card-actions">
-          <button class="btn btn-primary">Get Started</button>
-        </div>
-      </div>
-    </div>
-
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/dashboard" exact component={Dashboard} />
+        <Route path="/editor" exact component={Editor} />
+        <Route path="/resource/:id" exact component={Preview} />
+        {/* <Route
+          path="/auth"
+          exact
+          component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}
+        /> */}
+      </Switch>
+    </BrowserRouter>
   );
 }
 
