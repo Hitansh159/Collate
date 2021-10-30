@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./navbar/navbar";
+import Navbar from "../home/navbar/navbar";
 import InputText from "./input/input"
 import Add from "./add/add"
 import Textarea from "./textarea/textarea";

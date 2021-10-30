@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./navbar/navbar";
+import Navbar from "../home/navbar/navbar";
 import { useState } from "react";
 import Card from "../home/card/card";
 import { useSelector } from "react-redux";
