@@ -253,7 +253,7 @@ async function test() {
         },
         "userEmail": "shreyasjadhav901@gmail.com"
     }
-    var x = await find_all_by_email('john@gmail.com');
+    var x = await create(data);
     console.log(x);
 
 
