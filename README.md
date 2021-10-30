@@ -4,6 +4,15 @@
 <img src = "https://cdn.discordapp.com/attachments/870368289602285591/904014963591483472/unknown.png">
 <hr>
 
+## Features
+
+- password less login 
+- cloud access , create resource and save, to access anytime and anywhere.
+- dashboard to access all your resources
+- feed to access public resources
+- make you resource public to share with others 
+- helpful tags to create resources 
+
 ## Motivation
 - As a developer, programmer, student , we do a lot of searching and perusing through documentation, articles, links, research paper,etc.  
 - So often , we find ourselves not able to find that article that we read, that amazing tutorial link, that github repo which has solution for our assignment , research paper, the list is endless.   
