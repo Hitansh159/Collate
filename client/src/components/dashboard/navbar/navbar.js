@@ -6,6 +6,7 @@ function Navbar() {
       <div class="flex-1 hidden px-2 mx-2 lg:flex">
         <span class="text-lg font-bold">Collate</span>
       </div>
+
       <div class="flex-1 lg:flex-none">
         <div class="form-control">
           <input type="text" placeholder="Search" class="input input-ghost" />
