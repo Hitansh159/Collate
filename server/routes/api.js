@@ -176,12 +176,12 @@ router.get('/delete/:id',async function(req,res,next){
 router.get('/feed',async function(req, res,next){
    try{
    var query = req.body.query;
-   var page_no = req.body.page_no
-   var limit = req.body.limit 
+   // var page_no = req.body.page_no
+   // var limit = req.body.limit 
    var tags = req.body.tags
    if(!query){
       if(tags.length == 0){
-         
+         resource.find_all_order(tags);
       }
    }
    }catch(e){
