@@ -21,7 +21,7 @@ function App() {
           exact
           component={() => (user ? <Preview /> : <Redirect to="/login" />)}
         />
-        <Route component={ErrorPage} />ś
+        <Route component={ErrorPage} />
         {/* <Route
           path="/auth"
           exact
