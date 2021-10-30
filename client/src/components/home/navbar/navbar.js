@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
+import { FaUserAlt, FaUserAltSlash } from 'react-icons/fa';
+import { IconContext } from "react-icons";
 
 function Navbar() {
 
@@ -10,6 +12,9 @@ function Navbar() {
         console.log(toggle);
         e.target.checked = !toggle;
     }
+
+    // if user is loged in
+    var user = JSON.parse(localStorage.getItem("userInfo"));
 
 
     return (
@@ -37,14 +42,19 @@ function Navbar() {
             <div class="flex-none mx-5">
                 <input type="checkbox" className="toggle" onClick={toggleHandler} />
             </div>
-            <div class="flex-none">
-                <div class="avatar">
-                    <div class="rounded-full w-10 h-10 m-1">
-                        <img src="https://i.pravatar.cc/500?img=32" />
+            <Link class="flex-none" to='/login'>
+                <IconContext.Provider value={{ size: '2em' }} >
+                    <div class="avatar">
+                        <div class="rounded-full w-10 h-10 m-1 p-1">
+                            {user ?
+                                <FaUserAlt />
+                                : <FaUserAltSlash />
+                            }
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </IconContext.Provider>
+            </Link >
+        </div >
     );
 }
 

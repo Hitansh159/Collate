@@ -6,89 +6,23 @@ import { getFeeds } from "../../actions/resource";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  const [feeds, setFeeds] = useState([]);
-  var feeds1 = {
-    data: [
-      {
-        title: "Title",
-        description:
-          "This is a small description about my resources. Which i think it might be usefull. but no one cares.",
-        tags: [
-          "script",
-          "Websites",
-          "Frames work",
-          "APIs",
-          "Tools",
-          "Image",
-          "notes",
-          "Voice notes",
-          "Papers",
-        ],
-      },
-      {
-        title: "Title",
-        description:
-          "This is a small description about my resources. Which i think it might be usefull. but no one cares.",
-        tags: [
-          "script",
-          "Websites",
-          "Frames work",
-          "APIs",
-          "Tools",
-          "Image",
-          "notes",
-          "Voice notes",
-          "Papers",
-        ],
-      },
-      {
-        title: "Title",
-        description:
-          "This is a small description about my resources. Which i think it might be usefull. but no one cares.",
-        tags: [
-          "script",
-          "Websites",
-          "Frames work",
-          "APIs",
-          "Tools",
-          "Image",
-          "notes",
-          "Voice notes",
-          "Papers",
-        ],
-      },
-      {
-        title: "Title",
-        description:
-          "This is a small description about my resources. Which i think it might be usefull. but no one cares.",
-        tags: [
-          "script",
-          "Websites",
-          "Frames work",
-          "APIs",
-          "Tools",
-          "Image",
-          "notes",
-          "Voice notes",
-          "Papers",
-        ],
-      },
-    ],
-  };
 
+  // loading stages
+  const [feeds, setFeeds] = useState([]);
+  const Theme = useSelector((state) => state.Theme);
+
+  // calling api for data
   useEffect(() => {
     const allFeeds = async () => {
       const data = await getFeeds();
       setFeeds(data.data);
+      console.log("data ", data);
     };
 
     allFeeds();
   }, []);
 
-  console.log(feeds);
-
-  const Theme = useSelector((state) => state.Theme);
-
+  // Setting theme
   if(Theme)
    document.documentElement.classList.add('dark');
   else

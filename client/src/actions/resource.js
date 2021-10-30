@@ -7,8 +7,8 @@ export const getFeeds = async () => {
     tags: [],
   };
 
-  if (localStorage.getItem("userInfo")) {
-    payload.email = JSON(localStorage.getItem("userInfo")).email;
+  if (localStorage.getItem("userInfo") && document.location.pathname != '/') {
+    payload.email = JSON.parse(localStorage.getItem("userInfo")).email;
   }
 
   const { data } = await api.fetchFeeds(payload);
