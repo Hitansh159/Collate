@@ -9,7 +9,7 @@ import LoginPage from "./components/login/login";
 import { useSelector } from "react-redux";
 
 function App() {
-  const user = localStorage.getItem("payload");
+  const user = localStorage.getItem("payload") || true;
 
   const Theme = useSelector((state) => (state.Theme));
 
