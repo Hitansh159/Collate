@@ -3,6 +3,8 @@ var model = require('../models/models.js');
 const sequelize = require('../sequelize.js');
 var user = require('./user_controller.js');
 var labels = require('./labels_controller.js');
+const { use } = require('../routes/api.js');
+
 // async function add_labels(result){
 //      var resource_id =   result.id;
 //      var tags = result.tags;
@@ -171,13 +173,28 @@ async function delete_by_id(id){
         return false;
     }
 }
+async function find_all_order(order_array){
+       try{
+           var sorted_resources = await model.resource.finalAll({order:order_array});
+           if(sorted_resources){
+               return sorted_resources;
+           }else{
+               return null;
+           }
+       }catch(e){
+        console.log(e);
+        return false;
+       }
+
+}
 
 module.exports = {
     get_by_id,
     create,
     update,
     is_belong,
-    delete_by_id
+    delete_by_id,
+    find_all_order
 }
 async function test()
 {
