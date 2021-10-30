@@ -65,6 +65,8 @@ export default function Home() {
             title={feed.title}
             description={feed.description}
             tags={feed.tags}
+            from = "home"
+            rid = {feed.id}
           />
         ))}
       </div>
