@@ -5,5 +5,34 @@
 <hr>
 
 ## Motivation
-As a developer, programmer, student , we do a lot of searching and perusing through documentation,articles,links,research paper,etc. So often , we find ourselves not able to find that one article we read which has tutorial for tensorflow.js, 
+- As a developer, programmer, student , we do a lot of searching and perusing through documentation, articles, links, research paper,etc.  
+- So often , we find ourselves not able to find that article that we read, that amazing tutorial link, that github repo which has solution for our assignment , research paper, the list is endless.   
+- Obviously , you can store web pages in bookmarks or google docs or even notepad. But we can all agree that is not ideal.  
+- This was the motivation behind **Collate** , to help us/you organize and collect information at a single place. 
+
+<hr>
+
+## Tech Stack
+- [expressjs](https://expressjs.com/) for backend.
+- [react](https://reactjs.org/) for frontend.
+- [tailwind css](https://tailwindcss.com/) , A utility-first CSS framework.
+- [daisyUI](https://daisyui.com/) , for tailwind css components.
+- [CockroachDB](https://www.cockroachlabs.com/), for database.
+- [SawoLabs](https://sawolabs.com/) , for authentication.
+- [sequelize](https://sequelize.org/) , for postgreSQL ORM.
+
+<hr>
+
+## Steps to run
+
+1. To run the repository , should have ``` node >= v14.15.4 ```.
+2. ``` git clone https://github.com/Hitansh159/Collate.git ```
+3. ``` cd server && npm install ```
+4. ``` npm start```
+5. ``` cd ..```
+6. ``` cd client && npm install ```
+7. ``` npm start ```
+8. go to ```localhost:<port_no>```
+
+
 
