@@ -4,7 +4,12 @@ var router = express.Router();
 var user = require('../controller/user_controller.js')
 var resource = require('../controller/resource_controller.js');
 const { response } = require('express');
-
+function containes(a,b){
+   for(let i in b){
+      if(a.includes(b[i]))return true;
+   }
+   return false;
+}
 router.post('/user', async function (req, res, next) {
 
    try {
@@ -167,5 +172,21 @@ router.get('/delete/:id',async function(req,res,next){
       res.status(404).send('some error occured');
    }
 
+})
+router.get('/feed',async function(req, res,next){
+   try{
+   var query = req.body.query;
+   var page_no = req.body.page_no
+   var limit = req.body.limit 
+   var tags = req.body.tags
+   if(!query){
+      if(tags.length == 0){
+         
+      }
+   }
+   }catch(e){
+      console.log(e)
+      res.status(404).send('some error occured');
+   }
 })
 module.exports = router;
