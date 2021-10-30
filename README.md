@@ -12,5 +12,22 @@
 
 <hr>
 
+## Tech Stack
+- [expressjs](https://expressjs.com/) for backend.
+- [react](https://reactjs.org/) for frontend.
+- [tailwind css](https://tailwindcss.com/) , A utility-first CSS framework.
+- [daisyUI](https://daisyui.com/) , for tailwind css components.
+- [CockroachDB](https://www.cockroachlabs.com/), for database.
+- [SawoLabs](https://sawolabs.com/) , for authentication.
+- [sequelize](https://sequelize.org/) , for postgreSQL ORM.
+
+<hr>
+
+## Steps to run
+
+- To run the repository , should have ``` node >= v14.15.4 ```.
+- ``` git clone 
+- 
+
 
 
