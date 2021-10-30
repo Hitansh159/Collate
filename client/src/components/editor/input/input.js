@@ -8,7 +8,7 @@ function InputText({label, placeholder}) {
     var dispatch = useDispatch();
 
     function click(e){
-        dispatch({type: 'update', key: label, value: e.target.value });  
+        dispatch({type: 'update', key: label.toLowerCase(), value: e.target.value });  
     };
 
     return (
