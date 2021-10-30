@@ -3,25 +3,26 @@ var model = require('../models/models.js');
 const sequelize = require('../sequelize.js');
 var user = require('./user_controller.js');
 var labels = require('./labels_controller.js');
-async function add_labels(result){
-     var resource_id =   result.id;
-     var tags = result.tags;
-     var data = [];
-     for (let i in tags){
-         var temp =  {};
-         temp['name'] = tags[i];
-         temp['resourceId'] = resource_id;
-         data.push(temp);
-     }
+// async function add_labels(result){
+//      var resource_id =   result.id;
+//      var tags = result.tags;
+//      var data = [];
+//      for (let i in tags){
+//          var temp =  {};
+//          temp['name'] = tags[i];
+//          temp['resourceId'] = resource_id;
+//          data.push(temp);
+//      }
 
-     var result = await labels.bulk_create(data);
-     if(result){
-         return true;
-     }
-     else{
-         return false;
-     }
-}
+//      var result = await labels.bulk_create(data);
+//      if(result.length != 0){
+//          console.log(result);
+//          return true;
+//      }
+//      else{
+//          return false;
+//      }
+// }
 async function create(data) {
     // data : {
     // tags: [], /// array of tags
@@ -48,8 +49,7 @@ async function create(data) {
   
                     if(res)
                     {  
-                        
-                        return res.json;
+                            return res.json;
                     }
                     else
                     {
@@ -158,12 +158,26 @@ async function update(data){
     }
     
 }
+async function delete_by_id(id){
+    try{
+       if(id){
+       var result =  await model.resource.destroy({ where :{id:id }});
+       return result;
+       }else{
+           return null;
+       }
+    } catch (e) {
+        console.log(e);
+        return false;
+    }
+}
 
 module.exports = {
     get_by_id,
     create,
     update,
-    is_belong
+    is_belong,
+    delete_by_id
 }
 async function test()
 {
@@ -181,8 +195,8 @@ async function test()
        },
        "userEmail":"test@gmail.com"
    }
-    var x = await add_labels(data);
+    // var x = await add_labels(data);
 
-    console.log(x)
+
 }
- test()
+//  test()

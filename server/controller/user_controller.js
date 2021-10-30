@@ -125,14 +125,14 @@ async function delete_by_dict(dict)
 }
 
 
-// async function test()
-// {
-//     var x = await findOrCreate('test1@gmail.com')
+async function test()
+{
+    var x = await delete_by_dict({'email':'test@gmail.com'})
 
-//     console.log(x)
-// }
+    console.log(x)
+}
 
-// test()
+test()
 
 module.exports = {
     create,

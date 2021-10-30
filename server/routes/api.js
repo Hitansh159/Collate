@@ -145,4 +145,27 @@ router.post('/save', async function (req, res, next) {
    }
 
 })
+router.get('/delete/:id',async function(req,res,next){
+   try{
+    var email = req.body.email;
+    var id = req.params.id;
+   var x = await resource.is_belong(email,id);
+   if(x){
+      var delete_result = await resource.delete_by_id(id);
+      if(delete_result){
+         res.json({'sucess':true});
+      }else{
+         res.json({'error':'not deleted'});
+      }
+   }
+   else{
+      res.json({'error':'not allow'});
+   }
+
+   }catch (e) {
+      console.log(e)
+      res.status(404).send('some error occured');
+   }
+
+})
 module.exports = router;
