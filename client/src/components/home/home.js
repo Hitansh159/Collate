@@ -104,7 +104,7 @@ export default function Home() {
       <div
         class="hero min-h-screen"
         style={{
-          backgroundImage: `url("https://picsum.photos/id/1005/1600/1400")`,
+          backgroundImage: `url("https://i.pinimg.com/736x/31/7d/21/317d212e2c86c5ba3ac53d9cfd7338e8.jpg")`,
         }}
       >
         <div class="hero-overlay bg-opacity-60"></div>
