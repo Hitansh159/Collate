@@ -25,9 +25,14 @@
 
 ## Steps to run
 
-- To run the repository , should have ``` node >= v14.15.4 ```.
-- ``` git clone 
-- 
+1. To run the repository , should have ``` node >= v14.15.4 ```.
+2. ``` git clone https://github.com/Hitansh159/Collate.git ```
+3. ``` cd server && npm install ```
+4. ``` npm start```
+5. ``` cd ..```
+6. ``` cd client && npm install ```
+7. ``` npm start ```
+8. ``` go to localhost:<port_no>```
 
 
 
