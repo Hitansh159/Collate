@@ -45,7 +45,7 @@ export default function Home() {
         <div class="text-center hero-content text-neutral-content">
           <div class="max-w-md">
             <h1 class="mb-5 text-5xl font-bold">
-              Collate your Notes there
+              Collate your Notes HERE!!
             </h1>
             <p class="mb-5">
               description goes here
@@ -56,7 +56,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="text-3xl m-3 text-primary-content">Feed</div>
+      <div className="text-5xl m-3 text-primary-content text-center">Feed</div>
       <hr />
 
       <div className="flex flex-wrap flex-row justify-center">

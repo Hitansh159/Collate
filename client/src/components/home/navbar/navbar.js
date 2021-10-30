@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { FaUserAlt, FaUserAltSlash } from 'react-icons/fa';
 import { IconContext } from "react-icons";
+import { GiNotebook } from 'react-icons/gi';
 
 function Navbar() {
 
@@ -20,12 +21,15 @@ function Navbar() {
     return (
         <div class="navbar sticky top-0 z-50 shadow-lg bg-black text-neutral-content rounded-b-lg">
 
-            <div class="flex-1 hidden px-2 mx-2 lg:flex">
-                <span class="text-lg font-bold">
-                    <Link to="/">
+            <div class="flex-1 hidden px-2 lg:flex">
+                <Link to="/" class="flex-1 hidden px-2 lg:flex">
+                    <IconContext.Provider value={{ size: '2em' }} >
+                        <GiNotebook />
+                    </IconContext.Provider>
+                    <span class="text-3xl font-bold mx-3">
                         Collate
-                    </Link>
-                </span>
+                    </span>
+                </Link>
             </div>
             <div class="flex-1 lg:flex-none">
                 <div class="form-control">
@@ -42,7 +46,7 @@ function Navbar() {
             <div class="flex-none mx-5">
                 <input type="checkbox" className="toggle" onClick={toggleHandler} />
             </div>
-            <Link class="flex-none" to={user?'/logout': '/login'}>
+            <Link class="flex-none" to={user ? '/logout' : '/login'}>
                 <IconContext.Provider value={{ size: '2em' }} >
                     <div class="avatar">
                         <div class="rounded-full w-10 h-10 m-1 p-1">
