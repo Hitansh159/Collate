@@ -5,15 +5,23 @@ import Dashboard from "./components/dashboard/dashboard";
 import Editor from "./components/editor/editor";
 import Preview from "./components/preview/preview";
 import Home from "./components/home/home";
+import LoginPage from "./components/login/login";
 
 function App() {
+  const user = localStorage.getItem("payload");
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/login" exact component={LoginPage} />
         <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/editor" exact component={Editor} />
-        <Route path="/resource/:id" exact component={Preview} />
+        <Route
+          path="/resource/:id"
+          exact
+          component={() => (user ? <Preview /> : <Redirect to="/login" />)}
+        />
+        <Route component={ErrorPage} />ś
         {/* <Route
           path="/auth"
           exact
