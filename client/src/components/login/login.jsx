@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import SawoLogin from "sawo-react";
 import { setLogin } from "../../actions/user";
-
+import Navbar from "../home/navbar/navbar";
 import { useHistory } from "react-router-dom";
 
 const LoginPage = () => {
@@ -21,8 +21,12 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="w-96 mt-10 m-auto ">
-      <SawoLogin config={sawoConfig} />
+    <div className="min-h-screen">
+      <Navbar />
+      <div className="w-96 mt-10 m-auto flex flex-col items-center min-h-full">
+        
+        <SawoLogin config={sawoConfig} className="self-center" />
+      </div>
     </div>
   );
 };

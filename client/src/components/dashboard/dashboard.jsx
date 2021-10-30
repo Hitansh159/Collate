@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./navbar/navbar";
 import { useState } from "react";
 import Card from "../home/card/card";
+import { useSelector } from "react-redux";
 
 const initFilters = {
   Snippets: false,
@@ -91,8 +92,11 @@ export default function Dashboard() {
     console.log(filters);
   };
 
+  const Theme = useSelector((state) => (state.Theme));
+
+
   return (
-    <>
+    <div className="bg-base-200 min-h-screen" data-theme={Theme ? 'dark' : 'ckmy'} >
       <Navbar />
       <div class="grid grid-cols-6 gap-4">
         <div class="">
@@ -123,6 +127,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

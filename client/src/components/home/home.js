@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./navbar/navbar";
 import Card from "./card/card";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   var feeds = {
@@ -75,6 +76,11 @@ export default function Home() {
 
   const Theme = useSelector((state) => (state.Theme));
 
+  if(Theme)
+   document.documentElement.classList.add('dark');
+  else
+    document.documentElement.classList.remove('dark');
+
   return (
     <div className="bg-base-200 min-h-full" data-theme={Theme ? 'dark' : 'ckmy'} >
       <Navbar />
@@ -86,12 +92,12 @@ export default function Home() {
         <div class="text-center hero-content text-neutral-content">
           <div class="max-w-md">
             <h1 class="mb-5 text-5xl font-bold">
-              Hello there
+              Collate your Notes there
             </h1>
             <p class="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+              description goes here
             </p>
-            <button class="btn btn-primary">Get Started</button>
+            <Link to='/login' class="btn btn-primary">Get Started</Link>
           </div>
         </div>
       </div>
