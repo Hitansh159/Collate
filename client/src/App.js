@@ -6,9 +6,20 @@ import Editor from "./components/editor/editor";
 import Preview from "./components/preview/preview";
 import Home from "./components/home/home";
 import LoginPage from "./components/login/login";
+import { useSelector } from "react-redux";
 
 function App() {
   const user = localStorage.getItem("payload");
+
+  const Theme = useSelector((state) => (state.Theme));
+
+  if(Theme)
+   document.documentElement.classList.add('dark');
+  else
+    document.documentElement.classList.remove('dark');
+
+
+
   return (
     <BrowserRouter>
       <Switch>

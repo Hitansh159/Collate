@@ -101,13 +101,15 @@ export default function Dashboard() {
       <div class="grid grid-cols-6 gap-4">
         <div class="">
           {/* <div class="py-4 artboard artboard-demo bg-base-200"> */}
+
+
           <ul class="menu py-4 shadow-lg bg-base-100 w-full rounded-box mt-5 ml-2 border-gray-700">
-            <li class="menu-title">
+            <li className="text-3xl shadow-md text-primary-content ">
               <span>Filters</span>
             </li>
 
             {Object.keys(filters).map((filter, value) => (
-              <li class={filters[filter] ? "bordered" : ""}>
+              <li class={filters[filter] ? "bordered dark:text-gray-400" : "dark:text-gray-400"}>
                 <a onClick={() => clickHandler(filter)}>{filter}</a>
               </li>
             ))}
@@ -115,7 +117,7 @@ export default function Dashboard() {
         </div>
         {/* </div> */}
         <div class="col-span-5">
-          <h1 className="text-4xl ml-8">Recent Notes</h1>
+          <h1 className="text-4xl ml-8 text-primary-content">Recent Notes</h1>
           <div className="flex flex-wrap flex-row justify-center">
             {feeds["data"].map((feed) => (
               <Card
