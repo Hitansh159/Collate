@@ -4,7 +4,7 @@ var router = express.Router();
 var user = require('../controller/user_controller.js')
 var resource = require('../controller/resource_controller.js');
 const { response } = require('express');
-function containes(a,b){
+function contains(a,b){
    for(let i in b){
       if(a.includes(b[i]))return true;
    }
@@ -173,6 +173,49 @@ router.get('/delete/:id',async function(req,res,next){
    }
 
 })
+
+
+function make_feed_response(resource_array)
+{
+   let result = []
+    for(let i in resource_array)
+    {
+        let temp  = { 
+
+           id : resource_array[i].id,
+           title : resource_array[i].content.title,
+           description : resource_array[i].content.description,
+           tags : resource_array[i].tags
+         }
+
+         result.push(temp);
+    }
+
+    return result;
+}
+
+function make_feed_response1(resource_array,tags)
+{
+   let result = []
+    for(let i in resource_array)
+    {
+
+      if(contains(resource_array[i].tags,tags)){
+        
+         let temp  = { 
+
+           id : resource_array[i].id,
+           title : resource_array[i].content.title,
+           description : resource_array[i].content.description,
+           tags : resource_array[i].tags
+         }
+
+         result.push(temp);
+      }
+    }
+
+    return result;
+}
 router.get('/feed',async function(req, res,next){
    try{
    var query = req.body.query;
@@ -180,13 +223,65 @@ router.get('/feed',async function(req, res,next){
    // var limit = req.body.limit 
    var tags = req.body.tags
    if(!query){
+
       if(tags.length == 0){
-         resource.find_all_order(tags);
+
+         // means no tag , so give all the public things
+         var x = await resource.find_all_public_order([['updatedAt','DESC']]);
+         var result = make_feed_response(x)
+         res.json({data : result});
+      
+      }
+      else
+      {
+         var x = await resource.find_all_public_order([['updatedAt','DESC']]);
+         var result = make_feed_response1(x,tags)
+         res.json({data : result});
       }
    }
+   else
+   {
+       res.json({error : 'No queries allowed'})
+   }
+
    }catch(e){
       console.log(e)
       res.status(404).send('some error occured');
    }
 })
+
+
+router.post('/feed',async function(req,res,next){
+    try {
+
+      var query = req.body.query;
+       var email = req.body.email;
+       var tags = req.body.tags; 
+
+       if(!query)
+       {
+          var x = await resource.find_all_by_email(email);
+          
+          if(tags.length == 0){
+
+             res.json( {data : make_feed_response(x)});
+          }
+          else
+          {
+             res.json({data : make_feed_response1(x,tags)});
+          }
+
+       }
+       else
+       {
+          res.json({error : 'queries is not implemented'})
+       }
+       
+    } catch (e) {
+
+      console.log(e)
+      res.status(404).send('some error occured');
+       
+    }
+});
 module.exports = router;
