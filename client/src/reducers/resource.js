@@ -1,4 +1,5 @@
 const initState = {
+    id: '',
     title: "",
     description: "",
     public: false,
@@ -17,6 +18,8 @@ const initState = {
     switch (action.type) {
       case "update":
         return { ...state, [action.key]: action.value };
+      case "replace":
+        return action.state;
       default:
         return state;
     }

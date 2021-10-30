@@ -22,7 +22,7 @@ export const saveResource = async (state)=>{
   var tags = [];
 
   for (const [key, value] of Object.entries(state)) {
-    if(key == 'title' || key == 'public' ||key == 'description'||key == 'edit')
+    if(key == 'title' || key == 'public' ||key == 'description'||key == 'edit' || key == 'id')
       continue;
     if(value.length > 0)
       for(let i in value)
@@ -47,6 +47,20 @@ export const saveResource = async (state)=>{
 
 
   const data = await api.saveResource(payload);
+
+  console.log(data);
+  return data;
+}
+
+export const getResource = async (id) =>{
+
+  var payload = {}
+
+  if (localStorage.getItem("userInfo")) {
+    payload.email = JSON.parse(localStorage.getItem("userInfo")).email;
+  }
+
+  const {data} = await api.fetchResource(payload, id);
 
   console.log(data);
   return data;

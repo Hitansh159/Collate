@@ -21,7 +21,7 @@ function Textarea({ name, id, groupName }) {
                     <label class="label">
                         <span class="label-text">Write your code here</span>
                     </label>
-                    <textarea class="textarea h-24 textarea-bordered textarea-primary" placeholder={`Enter your ${groupName}`} disabled={!state.edit} onChange={changeHandeler}></textarea>
+                    <textarea class="textarea h-24 textarea-bordered textarea-primary" placeholder={`Enter your ${groupName}`} disabled={!state.edit} onChange={changeHandeler} value={state[groupName][id]}></textarea>
                 </div>
             </div>
         </div>

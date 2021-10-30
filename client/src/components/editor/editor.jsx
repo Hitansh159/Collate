@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../home/navbar/navbar";
 import InputText from "./input/input"
 import Add from "./add/add"
@@ -7,10 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import FieldGroup from "./fieldgroup/fieldgroup";
 import { MdOutlineEditOff, MdOutlineModeEditOutline } from "react-icons/md";
 import { IconContext } from "react-icons";
-import { saveResource } from "../../actions/resource";
+import { getResource, saveResource } from "../../actions/resource";
+import { useLocation } from "react-router-dom";
 
 export default function Editor() {
 
+  // states
   const Resource = useSelector((state) => (state.Resource));
   const Theme = useSelector((state) => (state.Theme));
   const dispatch = useDispatch();
@@ -24,8 +26,24 @@ export default function Editor() {
     'Text_Notes',
     'Papers'
   ];
-  console.log(Resource, Theme);
+  
+  const location = useLocation();
+  var id = location.state.id;
+  
+  useEffect(() => {
+    const allFeeds = async () => {
+      const data = await getResource(id);
+      dispatch({type:'replace', state: data.content});
+      dispatch({type: 'update', key:'id', value:data.id});
+    };
+    
+    allFeeds();
+  }, []);
+  
+  console.log("state ", Resource);
 
+
+  // handeling changes
   function toggleHandle(e){
     dispatch({type:'update', key:'public', value: !Resource.public})
   }
@@ -54,7 +72,7 @@ export default function Editor() {
         <div class="form-control m-2 mr-4">
           <label class="cursor-pointer label">
             <span class="label-text m-2">Make Public</span>
-            <input type="checkbox" class="toggle toggle-primary" onChange={toggleHandle}/>
+            <input type="checkbox" class="toggle toggle-primary" onChange={toggleHandle} checked={Resource.public}/>
           </label>
         </div>
 
