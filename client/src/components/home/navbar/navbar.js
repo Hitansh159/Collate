@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 
 function Navbar() {
-    var user = "Ada, Lovelace";
 
-    var toggle = useSelector((state)=>(state.Theme));
+    var toggle = useSelector((state) => (state.Theme));
     var dispatch = useDispatch();
-    function toggleHandler(e){
-        dispatch({type: 'toggle'});
+    function toggleHandler(e) {
+        dispatch({ type: 'toggle' });
         console.log(toggle);
         e.target.checked = !toggle;
     }
@@ -17,7 +17,9 @@ function Navbar() {
 
             <div class="flex-1 hidden px-2 mx-2 lg:flex">
                 <span class="text-lg font-bold">
-                    Collate
+                    <Link to="/">
+                        Collate
+                    </Link>
                 </span>
             </div>
             <div class="flex-1 lg:flex-none">
@@ -33,7 +35,7 @@ function Navbar() {
                 </button>
             </div>
             <div class="flex-none mx-5">
-                <input type="checkbox" className="toggle" onClick={toggleHandler}/>
+                <input type="checkbox" className="toggle" onClick={toggleHandler} />
             </div>
             <div class="flex-none">
                 <div class="avatar">
