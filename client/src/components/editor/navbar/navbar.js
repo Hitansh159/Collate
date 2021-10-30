@@ -13,7 +13,7 @@ function Navbar() {
 
 
     return (
-        <div class="navbar mb-2 shadow-lg bg-black text-neutral-content rounded-b-lg">
+        <div class="navbar sticky top-0 z-50 shadow-lg bg-black text-neutral-content rounded-b-lg">
 
             <div class="flex-1 hidden px-2 mx-2 lg:flex">
                 <span class="text-lg font-bold">
