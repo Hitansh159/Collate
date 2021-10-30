@@ -9,7 +9,7 @@ function FieldGroup({ name }) {
     console.log(state[name.toLowerCase()], name);
 
     return (
-        <div class="collapse min-w-1 border rounded-box bg-base-100 border-base-300 collapse-plus m-3 focus:bg-primary-focus ">
+        <div class="collapse w-9/12 max-w-6xl self-center border rounded-box bg-base-100 border-base-300 collapse-plus m-3 focus:bg-primary-focus ">
             <input type="checkbox" />
             <div class="collapse-title text-xl font-medium">
                 {name}

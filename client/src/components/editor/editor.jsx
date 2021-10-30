@@ -38,52 +38,59 @@ export default function Editor() {
   console.log(Resource, Theme);
 
 
-  function editToggle(e){
-    
-    dispatch({type: 'update', key:'edit', value:!Resource.edit})
+  function editToggle(e) {
+
+    dispatch({ type: 'update', key: 'edit', value: !Resource.edit })
   }
 
   return (
     <div className="bg-base-200" data-theme={Theme ? 'dark' : 'ckmy'} >
       <Navbar />
-      <div className="grid grid-cols-2">
-        <div class="form-control p-5 min-w-full flex">
+
+      <div class="py-4 artboard artboard-demo bg-transparent border-0 shadow-none fixed z-40 bottom-0 right-0 mx-3 flex items-end">
+        <div class="form-control m-2">
+          <label class="cursor-pointer label">
+            <span class="label-text m-2">Make Public</span>
+            <input type="checkbox" class="toggle toggle-primary" />
+          </label>
+        </div>
+
+        <Add />
+
+        <IconContext.Provider value={{ size: '3em' }} >
+          <div class="shadow-lg px-3 py-2 max-h-16 bg-base-100">
+            <buttom onClick={editToggle}>
+              {Resource.edit ?
+                <AiFillEdit />
+                : <AiOutlineEdit />}
+            </buttom>
+          </div>
+        </IconContext.Provider>
+        <button class="btn btn-success m-3">Save</button> 
+      </div>
+
+
+      {/* 
+      <div className="fixed z-10 bottom-0 right-0 flex flex-col justify-items-end p-3">
+
+
+
+        
+
+      </div> */}
+
+      <div className="grid grid-cols-9 gap-4 z-0">
+
+        <div class="form-control p-5 min-w-full col-start-3 col-span-7">
           <InputText label="Title" placeholder="Enter Title here" />
           <InputText label="Description" placeholder="Small description here" />
         </div>
-
-        <div className="flex flex-row flex-wrap space-x-16">
-          <div class="w-1/3 p-6 card bordered shadow-lg max-w-lg m-3 bottom-1">
-            <div class="form-control">
-              <label class="cursor-pointer label">
-                <span class="label-text">Make Public</span>
-                <input type="checkbox" class="toggle toggle-primary" />
-              </label>
-            </div>
-            <p>
-              This will make your all content under this resourse available to everyone
-            </p>
-          </div>
-
-          <Add />
-
-          <IconContext.Provider value={{ size: '3em' }} >
-            <div class="card bordered shadow-lg px-3 py-2 max-h-16 bg-base-100">
-              <buttom onClick={editToggle}>
-                {Resource.edit?
-                  <AiFillEdit />
-                : <AiOutlineEdit />}
-              </buttom>
-            </div>
-          </IconContext.Provider>
-
-        </div>
-
-        <div className="col-span-2" >
+        <div className="p-5 row-start-2 col-start-3 col-span-7">
           {fields.map((e, i) => (<FieldGroup name={e} />))}
         </div>
 
       </div>
+
     </div>
   );
 }

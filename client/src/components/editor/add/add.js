@@ -27,7 +27,7 @@ function Add() {
     }
 
     return (
-        <div class="dropdown dropdown-hover m-3">
+        <div class="dropdown dropdown-hover dropdown-left dropdown-end m-3">
             <div tabindex="0" class="m-1 filter drop-shadow-xl btn bg-primary hover:bg-primary-focus border-0">open on hover</div>
             <ul tabindex="0" class="p-2 menu dropdown-content bg-base-100 rounded-box w-52 shadow-lg">
                 {fields.map((feild) => (
