@@ -67,7 +67,7 @@ router.post('/login', async function (req, res, next) {
 
 
 });
-router.get('/resource/:id', async function (req, res, next) {
+router.post('/resource/:id', async function (req, res, next) {
    try {
 
       if (req.body) {
@@ -150,7 +150,7 @@ router.post('/save', async function (req, res, next) {
    }
 
 })
-router.get('/delete/:id',async function(req,res,next){
+router.post('/delete/:id',async function(req,res,next){
    try{
     var email = req.body.email;
     var id = req.params.id;
@@ -258,24 +258,52 @@ router.post('/feed',async function(req,res,next){
        var email = req.body.email;
        var tags = req.body.tags; 
 
-       if(!query)
+       if(email == '')
        {
-          var x = await resource.find_all_by_email(email);
-          
-          if(tags.length == 0){
+         if(!query){
 
-             res.json( {data : make_feed_response(x)});
-          }
-          else
-          {
-             res.json({data : make_feed_response1(x,tags)});
-          }
+            if(tags.length == 0){
+      
+               // means no tag , so give all the public things
+               var x = await resource.find_all_public_order([['updatedAt','DESC']]);
+               var result = make_feed_response(x)
+               res.json({data : result});
+            
+            }
+            else
+            {
+               var x = await resource.find_all_public_order([['updatedAt','DESC']]);
+               var result = make_feed_response1(x,tags)
+               res.json({data : result});
+            }
+         }
+         else
+         {
+             res.json({error : 'No queries allowed'})
+         }
 
        }
-       else
-       {
-          res.json({error : 'queries is not implemented'})
-       }
+       else{
+
+         if(!query)
+         {
+            var x = await resource.find_all_by_email(email);
+            
+            if(tags.length == 0){
+
+               res.json( {data : make_feed_response(x)});
+            }
+            else
+            {
+               res.json({data : make_feed_response1(x,tags)});
+            }
+
+         }
+         else
+         {
+            res.json({error : 'queries is not implemented'})
+         }
+      }
        
     } catch (e) {
 
