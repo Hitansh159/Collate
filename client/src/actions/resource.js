@@ -8,11 +8,14 @@ export const getFeeds = async () => {
   };
 
   if (localStorage.getItem("userInfo")) {
-    payload.email = localStorage.getItem("userInfo").email;
+    console.log(JSON.parse(localStorage.getItem("userInfo")));
+    payload.email = JSON.parse(localStorage.getItem("userInfo")).email;
+
+    console.log("Hello");
   }
 
-  const { body } = await api.fetchFeeds(payload);
+  const { data } = await api.fetchFeeds(payload);
 
-  console.log(body);
-  return body.data;
+  console.log(data);
+  return data;
 };
