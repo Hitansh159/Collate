@@ -5,7 +5,7 @@ import Add from "./add/add"
 import Textarea from "./textarea/textarea";
 import { useDispatch, useSelector } from "react-redux";
 import FieldGroup from "./fieldgroup/fieldgroup";
-import { AiFillEdit, AiOutlineEdit } from "react-icons/ai";
+import { MdOutlineEditOff, MdOutlineModeEditOutline } from "react-icons/md";
 import { IconContext } from "react-icons";
 
 /*
@@ -44,40 +44,35 @@ export default function Editor() {
   }
 
   return (
-    <div className="bg-base-200" data-theme={Theme ? 'dark' : 'ckmy'} >
+    <div className="bg-base-100" data-theme={Theme ? 'dark' : 'ckmy'} >
       <Navbar />
 
-      <div class="py-4 artboard artboard-demo bg-transparent border-0 shadow-none fixed z-40 bottom-0 right-0 mx-3 flex items-end">
-        <div class="form-control m-2">
+      <div class="py-4 artboard artboard-demo w-auto bg-transparent border-0 shadow-none fixed z-40 bottom-0 right-0 mx-3 flex items-end">
+        
+        
+        <IconContext.Provider value={{ size: '3em' }} >
+          <div class="shadow-lg px-3 py-2 mr-4 max-h-16 bg-base-100">
+            <buttom onClick={editToggle}>
+              {Resource.edit ?
+                <MdOutlineModeEditOutline />
+                : <MdOutlineEditOff />}
+            </buttom>
+          </div>
+        </IconContext.Provider>
+
+        <div class="form-control m-2 mr-4">
           <label class="cursor-pointer label">
             <span class="label-text m-2">Make Public</span>
             <input type="checkbox" class="toggle toggle-primary" />
           </label>
         </div>
 
+        <button class="btn btn-success m-3">Save</button>
+
         <Add />
 
-        <IconContext.Provider value={{ size: '3em' }} >
-          <div class="shadow-lg px-3 py-2 max-h-16 bg-base-100">
-            <buttom onClick={editToggle}>
-              {Resource.edit ?
-                <AiFillEdit />
-                : <AiOutlineEdit />}
-            </buttom>
-          </div>
-        </IconContext.Provider>
-        <button class="btn btn-success m-3">Save</button> 
       </div>
 
-
-      {/* 
-      <div className="fixed z-10 bottom-0 right-0 flex flex-col justify-items-end p-3">
-
-
-
-        
-
-      </div> */}
 
       <div className="grid grid-cols-9 gap-4 z-0">
 

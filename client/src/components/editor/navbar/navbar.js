@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Navbar() {
     var user = "Ada, Lovelace";
@@ -17,7 +18,9 @@ function Navbar() {
 
             <div class="flex-1 hidden px-2 mx-2 lg:flex">
                 <span class="text-lg font-bold">
+                <Link to='/'>  
                     Collate
+                    </Link>
                 </span>
             </div>
             <div class="flex-1 lg:flex-none">
