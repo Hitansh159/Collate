@@ -142,7 +142,7 @@ export default function Dashboard() {
         </div>
         {/* </div> */}
         <div class="col-span-5">
-          <h1 className="text-4xl ml-8 text-primary-content mt-2">Recent Notes</h1>
+          <h1 className="text-4xl text-primary-content mt-2 text-center">Recent Notes</h1>
           <div className="flex flex-wrap flex-row justify-center">
             {feeds.map((feed) => (
               <Card
