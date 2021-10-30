@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "/api" });
+const API = axios.create({ baseURL: "http://localhost:3000/api" });
 
 // //* Adding Authorization Token in req.headers
 // API.interceptors.request.use((req) => {
