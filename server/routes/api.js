@@ -1,75 +1,148 @@
 var express = require('express');
 const { idle_in_transaction_session_timeout } = require('pg/lib/defaults');
 var router = express.Router();
-var user  = require('../controller/user_controller.js')
+var user = require('../controller/user_controller.js')
+var resource = require('../controller/resource_controller.js');
+const { response } = require('express');
 
-router.post('/user', async function(req, res, next) {
+router.post('/user', async function (req, res, next) {
 
-  try
-  {
-    var email = req.body.email;
+   try {
+      var email = req.body.email;
 
-    if(email)
-    {
-       var result = await user.get_by_email(email);
+      if (email) {
+         var result = await user.get_by_email(email);
 
-       if(result)
-       {
-          res.json(result);
-       }
-       else
-       {
-          res.json({error : 'Does not exist'});
-       }
-    }
-    else
-    {
-       res.json({error : 'Please give email'})
-    }
-  }
-  catch (e)
-  {
-     console.log(e);
-     res.status(404).send('Some error occured');
-  }
-    
+         if (result) {
+            res.json(result);
+         }
+         else {
+            res.json({ error: 'Does not exist' });
+         }
+      }
+      else {
+         res.json({ error: 'Please give email' })
+      }
+   }
+   catch (e) {
+      console.log(e);
+      res.status(404).send('Some error occured');
+   }
+
 });
 
-router.post('/login', async function(req, res, next){
+router.post('/login', async function (req, res, next) {
 
 
-    try{
+   try {
 
-        var email = req.body.payload.identifier;
+      var email = req.body.payload.identifier;
 
-        if(email)
-        {
-             var result = await user.findOrCreate(email)
+      if (email) {
+         var result = await user.findOrCreate(email)
 
-             if(result)
-             {
-                res.json(result);
-             }
-             else
-             {
-                res.json({error : 'Could not add to database'})
-             }
-        }
-        else
-        {
-           res.json({error : "Please give email"})
-        }
+         if (result) {
+            res.json(result);
+         }
+         else {
+            res.json({ error: 'Could not add to database' })
+         }
+      }
+      else {
+         res.json({ error: "Please give email" })
+      }
 
 
-    }
-    catch(e)
-    {
+   }
+   catch (e) {
       console.log(e)
       res.status(404).send('some error occured');
-    }
+   }
 
 
 
 });
+router.get('/resource/:id', async function (req, res, next) {
+   try {
 
+      if (req.body) {
+         var email = req.body.email;
+         var resource_id = req.params.id;
+         var result = await resource.get_by_id(resource_id);
+         if (result) {
+            if (result.public == 0) {
+               // private
+               var user_result = await user.get_by_email(email);
+               if (user_result) {
+                  if (user_result.id == result.userId) {
+                     res.json(result)
+                  }
+                  else {
+                     res.json({ error: 'canot access' })
+                  }
+               }
+
+               else {
+                  res.json({ error: 'wrong email ' })
+               }
+            }
+            else {
+               //public
+               res.json(result);
+            }
+         }
+         else {
+            res.json({ error: 'Could not found ' })
+         }
+      }
+      else {
+         var resource_id = req.params.id;
+         var result = await resource.get_by_id(resource_id);
+         if (result.public == 0) {
+            res.json({ error: 'cannot access' })
+         }
+         else {
+            res.json(result);
+         }
+      }
+
+   } catch (e) {
+      console.log(e)
+      res.status(404).send('some error occured');
+   }
+});
+router.post('/save', async function (req, res, next) {
+   try {
+      var data = req.body;
+      if (data.id) {
+         //update resource
+         var x = await resource.update(data);
+         if (x) {
+            var resource_result = await resource.get_by_id(data.id);
+            if (resource_result) {
+               res.json(resource_result);
+
+            } else {
+              
+               res.json({ 'error': "could not update resource" });
+            }
+         } else {
+           
+            res.json({ 'error': "could not update resource" });
+         }
+      } else {
+         //create resource
+         var created_resource = await resource.create(data);
+         if (created_resource) {
+            res.json(created_resource);
+         } else {
+            res.json({ 'error': "could not create resource" });
+         }
+      }
+   } catch (e) {
+      console.log(e)
+      res.status(404).send('some error occured');
+   }
+
+})
 module.exports = router;
