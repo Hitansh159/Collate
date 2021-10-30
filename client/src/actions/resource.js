@@ -48,7 +48,10 @@ export const saveResource = async (state)=>{
 
   const data = await api.saveResource(payload);
 
-  console.log(data);
+  if(data.error)
+    alert(`Error :${data.error}`);
+  else
+    alert("Saved successfully");
   return data;
 }
 

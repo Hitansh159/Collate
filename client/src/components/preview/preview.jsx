@@ -33,6 +33,10 @@ export default function Preview() {
   useEffect(() => {
     const allFeeds = async () => {
       const data = await getResource(id);
+      if(data.error){
+        alert(`Error: ${data.error}`)
+        return;
+      }
       dispatch({type:'replace', state: data.content});
       dispatch({type: 'update', key:'id', value:data.id});
     };
