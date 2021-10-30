@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:3000/api" });
+const API = axios.create({ baseURL: "http://localhost:5000/api" });
 
 // //* Adding Authorization Token in req.headers
 // API.interceptors.request.use((req) => {
@@ -31,3 +31,4 @@ const API = axios.create({ baseURL: "http://localhost:3000/api" });
 // export const singUp = (formData) => API.post("/user/signup", formData);
 export const setLogin = (payload) => API.post("/login", payload);
 export const fetchFeeds = (payload) => API.post("/feed", payload);
+export const saveResource = (payload) => API.post("/save", payload);

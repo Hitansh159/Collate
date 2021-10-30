@@ -7,18 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FieldGroup from "./fieldgroup/fieldgroup";
 import { MdOutlineEditOff, MdOutlineModeEditOutline } from "react-icons/md";
 import { IconContext } from "react-icons";
-
-/*
-  data:
-    title:
-    description:
-    public:
-    fields:
-      code: [
-        "", ""
-      ]
-
-*/
+import { saveResource } from "../../actions/resource";
 
 export default function Editor() {
 
@@ -37,9 +26,11 @@ export default function Editor() {
   ];
   console.log(Resource, Theme);
 
+  function toggleHandle(e){
+    dispatch({type:'update', key:'public', value: !Resource.public})
+  }
 
   function editToggle(e) {
-
     dispatch({ type: 'update', key: 'edit', value: !Resource.edit })
   }
 
@@ -63,11 +54,11 @@ export default function Editor() {
         <div class="form-control m-2 mr-4">
           <label class="cursor-pointer label">
             <span class="label-text m-2">Make Public</span>
-            <input type="checkbox" class="toggle toggle-primary" />
+            <input type="checkbox" class="toggle toggle-primary" onChange={toggleHandle}/>
           </label>
         </div>
 
-        <button class="btn btn-success m-3">Save</button>
+        <button class="btn btn-success m-3" onClick={()=>(saveResource(Resource))}>Save</button>
 
         <Add />
 
