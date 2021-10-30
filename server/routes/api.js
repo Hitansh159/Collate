@@ -42,9 +42,11 @@ router.post('/login', async function (req, res, next) {
    try {
 
       var email = req.body.payload.identifier;
+      var name = req.body.payload.name;
 
-      if (email) {
-         var result = await user.findOrCreate(email)
+
+      if (email && name) {
+         var result = await user.findOrCreate(email,name)
 
          if (result) {
             res.json(result);
@@ -54,7 +56,7 @@ router.post('/login', async function (req, res, next) {
          }
       }
       else {
-         res.json({ error: "Please give email" })
+         res.json({ error: "Please give email or name" })
       }
 
 
