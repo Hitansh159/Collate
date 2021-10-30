@@ -32,7 +32,7 @@
 5. ``` cd ..```
 6. ``` cd client && npm install ```
 7. ``` npm start ```
-8. ``` go to localhost:<port_no>```
+8. go to ```localhost:<port_no>```
 
 
 
