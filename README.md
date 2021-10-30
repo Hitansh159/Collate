@@ -1,11 +1,29 @@
 # Collate
 
 ### **Collate** is a web app that helps you organize and collect information. 
-<img src = "https://cdn.discordapp.com/attachments/870368289602285591/904014963591483472/unknown.png">
+
+#### Home page
+![image](https://user-images.githubusercontent.com/65333231/139560375-e4f75a1b-f8b6-4582-96c9-aaca173040ba.png)
+#### Dashboard
+![image](https://user-images.githubusercontent.com/65333231/139560405-a9e748d0-0112-4c05-8600-60a696f77cf3.png)
+#### Editor
+![image](https://user-images.githubusercontent.com/65333231/139560417-7ad98597-2421-422c-ae1b-446896281e21.png)
+![image](https://user-images.githubusercontent.com/65333231/139560486-4e87ce99-a763-4847-bba7-ef7e47187d51.png)
+![image](https://user-images.githubusercontent.com/65333231/139560491-0fae6b26-a5d6-4919-b7ea-53e426dad814.png)
+
+#### Dark mode
+#### Feed
+![image](https://user-images.githubusercontent.com/65333231/139560503-06cbae25-f77e-46da-80cf-f1e8c88777a2.png)
+#### dashboard
+![image](https://user-images.githubusercontent.com/65333231/139560506-a6352570-4567-47dc-85e4-dc10c15e408f.png)
+
+
+
 <hr>
 
 ## Features
 
+- Dark mode toggle
 - password less login 
 - cloud access , create resource and save, to access anytime and anywhere.
 - dashboard to access all your resources
