@@ -6,89 +6,23 @@ import { getFeeds } from "../../actions/resource";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  const [feeds, setFeeds] = useState([]);
-  var feeds1 = {
-    data: [
-      {
-        title: "Title",
-        description:
-          "This is a small description about my resources. Which i think it might be usefull. but no one cares.",
-        tags: [
-          "script",
-          "Websites",
-          "Frames work",
-          "APIs",
-          "Tools",
-          "Image",
-          "notes",
-          "Voice notes",
-          "Papers",
-        ],
-      },
-      {
-        title: "Title",
-        description:
-          "This is a small description about my resources. Which i think it might be usefull. but no one cares.",
-        tags: [
-          "script",
-          "Websites",
-          "Frames work",
-          "APIs",
-          "Tools",
-          "Image",
-          "notes",
-          "Voice notes",
-          "Papers",
-        ],
-      },
-      {
-        title: "Title",
-        description:
-          "This is a small description about my resources. Which i think it might be usefull. but no one cares.",
-        tags: [
-          "script",
-          "Websites",
-          "Frames work",
-          "APIs",
-          "Tools",
-          "Image",
-          "notes",
-          "Voice notes",
-          "Papers",
-        ],
-      },
-      {
-        title: "Title",
-        description:
-          "This is a small description about my resources. Which i think it might be usefull. but no one cares.",
-        tags: [
-          "script",
-          "Websites",
-          "Frames work",
-          "APIs",
-          "Tools",
-          "Image",
-          "notes",
-          "Voice notes",
-          "Papers",
-        ],
-      },
-    ],
-  };
 
+  // loading stages
+  const [feeds, setFeeds] = useState([]);
+  const Theme = useSelector((state) => state.Theme);
+
+  // calling api for data
   useEffect(() => {
     const allFeeds = async () => {
       const data = await getFeeds();
       setFeeds(data.data);
+      console.log("data ", data);
     };
 
     allFeeds();
   }, []);
 
-  console.log(feeds);
-
-  const Theme = useSelector((state) => state.Theme);
-
+  // Setting theme
   if(Theme)
    document.documentElement.classList.add('dark');
   else
@@ -104,14 +38,14 @@ export default function Home() {
       <div
         class="hero min-h-screen"
         style={{
-          backgroundImage: `url("https://picsum.photos/id/1005/1600/1400")`,
+          backgroundImage: `url("https://i.pinimg.com/736x/31/7d/21/317d212e2c86c5ba3ac53d9cfd7338e8.jpg")`,
         }}
       >
         <div class="hero-overlay bg-opacity-60"></div>
         <div class="text-center hero-content text-neutral-content">
           <div class="max-w-md">
             <h1 class="mb-5 text-5xl font-bold">
-              Collate your Notes there
+              Collate your Notes HERE!!
             </h1>
             <p class="mb-5">
               description goes here
@@ -122,7 +56,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="text-3xl m-3 text-primary-content">Feed</div>
+      <div className="text-5xl m-3 text-primary-content text-center">Feed</div>
       <hr />
 
       <div className="flex flex-wrap flex-row justify-center">
@@ -131,6 +65,8 @@ export default function Home() {
             title={feed.title}
             description={feed.description}
             tags={feed.tags}
+            from = "home"
+            rid = {feed.id}
           />
         ))}
       </div>

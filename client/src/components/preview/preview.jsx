@@ -1,5 +1,5 @@
-import React from "react";
-import Navbar from "./navbar/navbar";
+import React, { useEffect } from "react";
+import Navbar from "../home/navbar/navbar";
 import InputText from "./input/input"
 import Add from "./add/add"
 import Textarea from "./textarea/textarea";
@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import FieldGroup from "./fieldgroup/fieldgroup";
 import { MdOutlineEditOff, MdOutlineModeEditOutline } from "react-icons/md";
 import { IconContext } from "react-icons";
+import { getResource } from "../../actions/resource";
+import { useParams } from "react-router-dom";
 
 
 export default function Preview() {
@@ -24,14 +26,24 @@ export default function Preview() {
     'Text_Notes',
     'Papers'
   ];
-  console.log(Resource, Theme);
-
-
-  function editToggle(e) {
-
-    dispatch({ type: 'update', key: 'edit', value: !Resource.edit })
-  }
-
+  
+  var { id } = useParams();
+  console.log( id);
+  
+  useEffect(() => {
+    const allFeeds = async () => {
+      const data = await getResource(id);
+      if(data.error){
+        alert(`Error: ${data.error}`)
+        return;
+      }
+      dispatch({type:'replace', state: data.content});
+      dispatch({type: 'update', key:'id', value:data.id});
+    };
+    
+    allFeeds();
+  }, []);
+  
   return (
     <div className="bg-base-100" data-theme={Theme ? 'dark' : 'ckmy'} >
       <Navbar />

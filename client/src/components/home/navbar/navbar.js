@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
+import { FaUserAlt, FaUserAltSlash } from 'react-icons/fa';
+import { IconContext } from "react-icons";
+import { GiNotebook } from 'react-icons/gi';
 
 function Navbar() {
 
@@ -11,16 +14,22 @@ function Navbar() {
         e.target.checked = !toggle;
     }
 
+    // if user is loged in
+    var user = JSON.parse(localStorage.getItem("userInfo"));
+
 
     return (
         <div class="navbar sticky top-0 z-50 shadow-lg bg-black text-neutral-content rounded-b-lg">
 
-            <div class="flex-1 hidden px-2 mx-2 lg:flex">
-                <span class="text-lg font-bold">
-                    <Link to="/">
+            <div class="flex-1 hidden px-2 lg:flex">
+                <Link to="/" class="flex-1 hidden px-2 lg:flex">
+                    <IconContext.Provider value={{ size: '2em' }} >
+                        <GiNotebook />
+                    </IconContext.Provider>
+                    <span class="text-3xl font-bold mx-3">
                         Collate
-                    </Link>
-                </span>
+                    </span>
+                </Link>
             </div>
             <div class="flex-1 lg:flex-none">
                 <div class="form-control">
@@ -37,14 +46,29 @@ function Navbar() {
             <div class="flex-none mx-5">
                 <input type="checkbox" className="toggle" onClick={toggleHandler} />
             </div>
-            <div class="flex-none">
-                <div class="avatar">
-                    <div class="rounded-full w-10 h-10 m-1">
-                        <img src="https://i.pravatar.cc/500?img=32" />
-                    </div>
+            {user &&
+                <div className="flex-none mx-5">
+                    <Link class="btn btn-ghost btn-sm rounded-btn" to="/dashboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 mr-2 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                        </svg>
+                        DashBoard
+                    </Link>
                 </div>
-            </div>
-        </div>
+            }
+            <Link class="flex-none" to={user ? '/logout' : '/login'}>
+                <IconContext.Provider value={{ size: '2em' }} >
+                    <div class="avatar">
+                        <div class="rounded-full w-10 h-10 m-1 p-1">
+                            {user ?
+                                <FaUserAlt />
+                                : <FaUserAltSlash />
+                            }
+                        </div>
+                    </div>
+                </IconContext.Provider>
+            </Link >
+        </div >
     );
 }
 

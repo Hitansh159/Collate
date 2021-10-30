@@ -1,8 +1,12 @@
-import React from "react";
-import Navbar from "./navbar/navbar";
+import React, { useEffect } from "react";
+import Navbar from "../home/navbar/navbar";
 import { useState } from "react";
 import Card from "../home/card/card";
 import { useSelector } from "react-redux";
+import { getFeeds } from "../../actions/resource";
+import { IconContext } from "react-icons";
+import { IoIosCreate } from 'react-icons/io';
+import { Link } from "react-router-dom";
 
 const initFilters = {
   Snippets: false,
@@ -85,19 +89,40 @@ var feeds = {
 };
 
 export default function Dashboard() {
+
+  // loading stages
+  const [feeds, setFeeds] = useState([]);
   const [filters, setFilters] = useState(initFilters);
+  const Theme = useSelector((state) => state.Theme);
+
+  // calling api for data
+  useEffect(() => {
+    const allFeeds = async () => {
+      const data = await getFeeds();
+      setFeeds(data.data);
+      console.log("data ", data, feeds);
+    };
+
+    allFeeds();
+  }, []);
 
   const clickHandler = (filter) => {
     setFilters({ ...filters, [filter]: !filters[filter] });
     console.log(filters);
   };
 
-  const Theme = useSelector((state) => (state.Theme));
-
 
   return (
     <div className="bg-base-200 min-h-screen" data-theme={Theme ? 'dark' : 'ckmy'} >
       <Navbar />
+      
+      <Link className="fixed bottom-0 right-0 mask mask-circle mr-10 mb-10 p-3 bg-primary" to='/editor'>
+        <IconContext.Provider value={{ size: '4em' }} >
+          <IoIosCreate />
+        </IconContext.Provider>
+
+      </Link>
+
       <div class="grid grid-cols-6 gap-4">
         <div class="">
           {/* <div class="py-4 artboard artboard-demo bg-base-200"> */}
@@ -117,13 +142,15 @@ export default function Dashboard() {
         </div>
         {/* </div> */}
         <div class="col-span-5">
-          <h1 className="text-4xl ml-8 text-primary-content">Recent Notes</h1>
+          <h1 className="text-4xl text-primary-content mt-2 text-center">Recent Notes</h1>
           <div className="flex flex-wrap flex-row justify-center">
-            {feeds["data"].map((feed) => (
+            {feeds.map((feed) => (
               <Card
                 title={feed.title}
                 description={feed.description}
                 tags={feed.tags}
+                rid={feed.id}
+                from='dashboard'
               />
             ))}
           </div>

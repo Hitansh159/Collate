@@ -7,8 +7,8 @@ export const getFeeds = async () => {
     tags: [],
   };
 
-  if (localStorage.getItem("userInfo")) {
-    payload.email = JSON(localStorage.getItem("userInfo")).email;
+  if (localStorage.getItem("userInfo") && document.location.pathname != '/') {
+    payload.email = JSON.parse(localStorage.getItem("userInfo")).email;
   }
 
   const { data } = await api.fetchFeeds(payload);
@@ -22,7 +22,7 @@ export const saveResource = async (state)=>{
   var tags = [];
 
   for (const [key, value] of Object.entries(state)) {
-    if(key == 'title' || key == 'public' ||key == 'description'||key == 'edit')
+    if(key == 'title' || key == 'public' ||key == 'description'||key == 'edit' || key == 'id')
       continue;
     if(value.length > 0)
       for(let i in value)
@@ -33,20 +33,37 @@ export const saveResource = async (state)=>{
 
   console.log(tags);
   var payload = {
-    id: (state.id?state.id:false) ,
+    id: (state.id?state.id:'') ,
     userEmail: '',
     tags: tags,
-    public: state.public,
+    public: (state.public?1:0),
     content: state
   };
 
 
   if (localStorage.getItem("userInfo")) {
-    payload.email = JSON.parse(localStorage.getItem("userInfo")).email;
+    payload.userEmail = JSON.parse(localStorage.getItem("userInfo")).email;
   }
 
 
   const data = await api.saveResource(payload);
+
+  if(data.error)
+    alert(`Error :${data.error}`);
+  else
+    alert("Saved successfully");
+  return data;
+}
+
+export const getResource = async (id) =>{
+
+  var payload = {}
+
+  if (localStorage.getItem("userInfo")) {
+    payload.email = JSON.parse(localStorage.getItem("userInfo")).email;
+  }
+
+  const {data} = await api.fetchResource(payload, id);
 
   console.log(data);
   return data;

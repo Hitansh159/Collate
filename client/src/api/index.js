@@ -32,3 +32,4 @@ const API = axios.create({ baseURL: "http://localhost:5000/api" });
 export const setLogin = (payload) => API.post("/login", payload);
 export const fetchFeeds = (payload) => API.post("/feed", payload);
 export const saveResource = (payload) => API.post("/save", payload);
+export const fetchResource = (payload, id) => API.post(`/resource/${id}`, payload)

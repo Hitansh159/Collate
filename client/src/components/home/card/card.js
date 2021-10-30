@@ -1,4 +1,9 @@
-function Card({ title, description, tags }) {
+import { useHistory } from 'react-router-dom';
+
+function Card({ title, description, tags, rid, from }) {
+
+    const history = useHistory();
+    console.log("d id: ", rid)
 
     return (
         <div class="card lg:card-side bordered w-30p min-h-1/6 shadow-lg m-5 bg-base-100 text-serif" >
@@ -15,7 +20,13 @@ function Card({ title, description, tags }) {
 
                 </div>
                 <div class="card-actions ">
-                    <button class="btn btn-primary">More info</button>
+                    <button class="btn btn-primary" onClick={() => {
+                        
+                        if (from == 'dashboard')
+                            history.push('/editor', { id: rid });
+                        else
+                            history.push(`/resource/${rid}`);
+                    }}>More info</button>
                 </div>
             </div>
         </div>
