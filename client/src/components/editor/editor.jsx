@@ -28,7 +28,7 @@ export default function Editor() {
   ];
   
   const location = useLocation();
-  var id = location.state.id;
+  var id = location.state?.id;
   
   useEffect(() => {
     const allFeeds = async () => {
@@ -37,7 +37,8 @@ export default function Editor() {
       dispatch({type: 'update', key:'id', value:data.id});
     };
     
-    allFeeds();
+    if(id)
+      allFeeds();
   }, []);
   
   console.log("state ", Resource);
