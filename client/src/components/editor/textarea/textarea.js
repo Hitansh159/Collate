@@ -14,14 +14,14 @@ function Textarea({ name, id, groupName }) {
 
 
     return (
-        <div class="card shadow-lg bg-base-100">
+        <div class="card shadow-lg bg-base-100 m-2">
             <div class="card-body">
-                <h2 class="card-title">{name}</h2>
+                <h2 class="card-title dark:text-gray-400">{name}</h2>
                 <div class="form-control">
                     <label class="label">
                         <span class="label-text">Write your code here</span>
                     </label>
-                    <textarea class="textarea h-24 textarea-bordered textarea-primary" placeholder="Bio" disabled={!state.edit} onChange={changeHandeler}></textarea>
+                    <textarea class="textarea h-24 textarea-bordered textarea-primary" placeholder={`Enter your ${groupName}`} disabled={!state.edit} onChange={changeHandeler}></textarea>
                 </div>
             </div>
         </div>
