@@ -2,7 +2,7 @@
   "name": "collate",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "https://collate-api-hack.herokuapp.com/",
   "dependencies": {
     "@craco/craco": "^6.4.0",
     "@tailwindcss/typography": "^0.4.1",
