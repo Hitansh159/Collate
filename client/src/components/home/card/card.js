@@ -1,14 +1,14 @@
 function Card({ title, description, tags }) {
 
     return (
-        <div class="card lg:card-side bordered w-30p min-h-1/6 shadow-lg m-5" >
+        <div class="card lg:card-side bordered w-30p min-h-1/6 shadow-lg m-5 bg-base-200" >
             <div class="card-body">
                 <h2 class="card-title">{title}</h2>
                 <p class="my-5">{description}</p>
 
                 <div>
                     {tags.map((tag) => (
-                        <div class="badge badge-success m-1 border-primary bg-secondary-focus">
+                        <div class="badge badge-secondary badge-outline m-1">
                             {tag}
                         </div>
                     ))}

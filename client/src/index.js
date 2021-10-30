@@ -4,14 +4,14 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import reducers from "./reducers";
+import reducer from "./reducers/index";
 import "./index.css";
-import Home from './components/home/home' 
+import Home from "./components/home/home";
 
-// const store = createStore(reducers, compose(applyMiddleware(thunk)));
+const store = createStore(reducer, compose(applyMiddleware(thunk)));
 ReactDOM.render(
-  // <Provider store={store}>
+  <Provider store={store}>
     <App />,
-  // </Provider>,
+  </Provider>,
   document.getElementById("root")
 );
