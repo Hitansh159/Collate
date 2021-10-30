@@ -2,7 +2,26 @@ const { truncate } = require('fs');
 var model = require('../models/models.js');
 const sequelize = require('../sequelize.js');
 var user = require('./user_controller.js');
+var labels = require('./labels_controller.js');
+async function add_labels(result){
+     var resource_id =   result.id;
+     var tags = result.tags;
+     var data = [];
+     for (let i in tags){
+         var temp =  {};
+         temp['name'] = tags[i];
+         temp['resourceId'] = resource_id;
+         data.push(temp);
+     }
 
+     var result = await labels.bulk_create(data);
+     if(result){
+         return true;
+     }
+     else{
+         return false;
+     }
+}
 async function create(data) {
     // data : {
     // tags: [], /// array of tags
@@ -28,7 +47,8 @@ async function create(data) {
                     let res = await model.resource.create(data);
   
                     if(res)
-                    {
+                    {  
+                        
                         return res.json;
                     }
                     else
@@ -148,7 +168,7 @@ module.exports = {
 async function test()
 {
     var data  = {
-        "id": "",
+        "id": "5a416c30-38f6-11ec-bd63-d338df0aa0e2",
        "tags": [
            "a",
            "b",
@@ -161,8 +181,8 @@ async function test()
        },
        "userEmail":"test@gmail.com"
    }
-    var x = await create(data);
+    var x = await add_labels(data);
 
     console.log(x)
 }
-// test()
+ test()

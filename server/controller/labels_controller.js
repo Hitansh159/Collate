@@ -47,14 +47,16 @@ async function find_by_tags(tags)
         
     }
 }
-
+module.exports = {
+    bulk_create
+}
 async function test()
 {
     var data = [{name:'code',resourceId : 'd5b7b5f0-38dc-11ec-adae-33cc24f089c9'},{name:'paper',resourceId : '7fe35d40-38f6-11ec-b11a-5189666b32e6'}]
     var tags = ['code','paper']
-    var res = await find_by_tags(tags)
+    var res = await bulk_create(data)
 
     console.log(res);
 }
 
-test()
+// test()
