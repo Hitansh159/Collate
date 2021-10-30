@@ -260,6 +260,7 @@ router.post('/feed',async function(req,res,next){
 
        if(email == '')
        {
+         
          if(!query){
 
             if(tags.length == 0){

@@ -96,7 +96,9 @@ var user = sequelize.define('user', {
     } 
 });
 
-user.hasMany(resource);
+user.hasMany(resource,{
+  onDelete: 'CASCADE'
+});
 
 var label = sequelize.define('label', {
 
@@ -114,7 +116,9 @@ var label = sequelize.define('label', {
    }
 });
 
-resource.hasMany(label);
+resource.hasMany(label,{
+  onDelete: 'CASCADE'
+});
 
 (async () => {
   await sequelize.sync();
