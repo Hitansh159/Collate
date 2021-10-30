@@ -12,5 +12,27 @@
 
 <hr>
 
+## Tech Stack
+- [expressjs](https://expressjs.com/) for backend.
+- [react](https://reactjs.org/) for frontend.
+- [tailwind css](https://tailwindcss.com/) , A utility-first CSS framework.
+- [daisyUI](https://daisyui.com/) , for tailwind css components.
+- [CockroachDB](https://www.cockroachlabs.com/), for database.
+- [SawoLabs](https://sawolabs.com/) , for authentication.
+- [sequelize](https://sequelize.org/) , for postgreSQL ORM.
+
+<hr>
+
+## Steps to run
+
+1. To run the repository , should have ``` node >= v14.15.4 ```.
+2. ``` git clone https://github.com/Hitansh159/Collate.git ```
+3. ``` cd server && npm install ```
+4. ``` npm start```
+5. ``` cd ..```
+6. ``` cd client && npm install ```
+7. ``` npm start ```
+8. go to ```localhost:<port_no>```
+
 
 
