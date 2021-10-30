@@ -42,7 +42,7 @@ router.post('/login', async function (req, res, next) {
    try {
 
       var email = req.body.payload.identifier;
-      var name = req.body.payload.name;
+      var name = req.body.payload.customFieldInputValues.name;
 
 
       if (email && name) {
