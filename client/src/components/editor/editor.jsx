@@ -4,7 +4,9 @@ import InputText from "./input/input"
 import Add from "./add/add"
 import Textarea from "./textarea/textarea";
 import { useDispatch, useSelector } from "react-redux";
-import FieldGroup from "./fieldgroup/fieldgroup"
+import FieldGroup from "./fieldgroup/fieldgroup";
+import { AiFillEdit, AiOutlineEdit } from "react-icons/ai";
+import { IconContext } from "react-icons";
 
 /*
   data:
@@ -22,6 +24,7 @@ export default function Editor() {
 
   const Resource = useSelector((state) => (state.Resource));
   const Theme = useSelector((state) => (state.Theme));
+  const dispatch = useDispatch();
   const fields = [
     'Snippets',
     'Websites',
@@ -34,6 +37,11 @@ export default function Editor() {
   ];
   console.log(Resource, Theme);
 
+
+  function editToggle(e){
+    
+    dispatch({type: 'update', key:'edit', value:!Resource.edit})
+  }
 
   return (
     <div className="bg-base-200" data-theme={Theme ? 'dark' : 'ckmy'} >
@@ -58,6 +66,17 @@ export default function Editor() {
           </div>
 
           <Add />
+
+          <IconContext.Provider value={{ size: '3em' }} >
+            <div class="card bordered shadow-lg px-3 py-2 max-h-16 bg-base-100">
+              <buttom onClick={editToggle}>
+                {Resource.edit?
+                  <AiFillEdit />
+                : <AiOutlineEdit />}
+              </buttom>
+            </div>
+          </IconContext.Provider>
+
         </div>
 
         <div className="col-span-2" >
