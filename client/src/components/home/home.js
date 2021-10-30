@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./navbar/navbar";
 import Card from "./card/card";
 import { useDispatch, useSelector } from "react-redux";
+import { getFeeds } from "../../actions/resource";
 
 export default function Home() {
-  // const [feeds, setFeeds] = useState([]);
-  var feeds = {
+  const [feeds, setFeeds] = useState([]);
+  var feeds1 = {
     data: [
       {
         title: "Title",
@@ -74,7 +75,16 @@ export default function Home() {
     ],
   };
 
-  useEffect(() => {});
+  useEffect(() => {
+    const allFeeds = async () => {
+      const data = await getFeeds();
+      setFeeds(data.data);
+    };
+
+    allFeeds();
+  }, []);
+
+  console.log(feeds);
 
   const Theme = useSelector((state) => state.Theme);
 
@@ -109,7 +119,7 @@ export default function Home() {
       <hr />
 
       <div className="flex flex-wrap flex-row justify-center">
-        {feeds["data"].map((feed) => (
+        {feeds.map((feed) => (
           <Card
             title={feed.title}
             description={feed.description}
