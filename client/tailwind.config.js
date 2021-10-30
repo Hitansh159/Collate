@@ -7,6 +7,11 @@ module.exports = {
         '30p' : '30%',
         '60p' : '60%',
         '90p' : '90%'
+      },
+      margin:{
+        '20p' : '20%',
+        '30p' : '30%',
+        '40p' : '40%',
       }, 
     },
   },
@@ -21,8 +26,10 @@ module.exports = {
   daisyui: {
     styled: true,
     themes: [
-      'garden',
-      'dracula'
+      'cmyk',
+      'halloween',
+      'dark',
+      
     ],
     base: true,
     utils: true,
