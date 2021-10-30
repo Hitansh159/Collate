@@ -4,13 +4,7 @@ function Textarea({ name, id, groupName }) {
 
 
     const state = useSelector((state)=>(state.Resource));
-    var dispatch = useDispatch();
 
-    function changeHandeler(e){
-        var arr = state[groupName];
-        arr[id] = e.target.value;
-        dispatch({type: 'update', key: groupName, value: arr });  
-    };
 
 
     return (
@@ -21,7 +15,7 @@ function Textarea({ name, id, groupName }) {
                     <label class="label">
                         <span class="label-text">Write your code here</span>
                     </label>
-                    <textarea class="textarea h-24 textarea-bordered textarea-primary" placeholder={`Enter your ${groupName}`} disabled='true'></textarea>
+                    <textarea class="textarea h-24 textarea-bordered textarea-primary text-balck dark:text-white" placeholder={`Enter your ${groupName}`} disabled='true' value={state[groupName][id]}></textarea>
                 </div>
             </div>
         </div>
