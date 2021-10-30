@@ -33,16 +33,16 @@ export const saveResource = async (state)=>{
 
   console.log(tags);
   var payload = {
-    id: (state.id?state.id:false) ,
+    id: (state.id?state.id:'') ,
     userEmail: '',
     tags: tags,
-    public: state.public,
+    public: (state.public?1:0),
     content: state
   };
 
 
   if (localStorage.getItem("userInfo")) {
-    payload.email = JSON.parse(localStorage.getItem("userInfo")).email;
+    payload.userEmail = JSON.parse(localStorage.getItem("userInfo")).email;
   }
 
 
