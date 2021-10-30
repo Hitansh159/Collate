@@ -42,7 +42,7 @@ function Navbar() {
             <div class="flex-none mx-5">
                 <input type="checkbox" className="toggle" onClick={toggleHandler} />
             </div>
-            <Link class="flex-none" to='/login'>
+            <Link class="flex-none" to={user?'/logout': '/login'}>
                 <IconContext.Provider value={{ size: '2em' }} >
                     <div class="avatar">
                         <div class="rounded-full w-10 h-10 m-1 p-1">

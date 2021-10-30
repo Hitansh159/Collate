@@ -32,6 +32,10 @@ function App() {
           exact
           component={() => (user ? <Preview /> : <Redirect to="/login" />)}
         />
+        <Route path="/logout" component={()=>{
+          localStorage.removeItem('userInfo');
+          return <Redirect to='/' />
+        }}/>
         <Route component={ErrorPage} />
         {/* <Route
           path="/auth"
