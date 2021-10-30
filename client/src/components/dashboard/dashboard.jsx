@@ -4,6 +4,9 @@ import { useState } from "react";
 import Card from "../home/card/card";
 import { useSelector } from "react-redux";
 import { getFeeds } from "../../actions/resource";
+import { IconContext } from "react-icons";
+import { IoIosCreate } from 'react-icons/io';
+import { Link } from "react-router-dom";
 
 const initFilters = {
   Snippets: false,
@@ -112,6 +115,14 @@ export default function Dashboard() {
   return (
     <div className="bg-base-200 min-h-screen" data-theme={Theme ? 'dark' : 'ckmy'} >
       <Navbar />
+      
+      <Link className="fixed bottom-0 right-0 mask mask-circle mr-10 mb-10 p-3 bg-primary" to='/editor'>
+        <IconContext.Provider value={{ size: '4em' }} >
+          <IoIosCreate />
+        </IconContext.Provider>
+
+      </Link>
+
       <div class="grid grid-cols-6 gap-4">
         <div class="">
           {/* <div class="py-4 artboard artboard-demo bg-base-200"> */}
@@ -138,8 +149,8 @@ export default function Dashboard() {
                 title={feed.title}
                 description={feed.description}
                 tags={feed.tags}
-                rid = {feed.id}
-                from = 'dashboard'
+                rid={feed.id}
+                from='dashboard'
               />
             ))}
           </div>
